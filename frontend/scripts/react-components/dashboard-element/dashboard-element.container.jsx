@@ -91,7 +91,7 @@ class DashboardElementContainer extends React.Component {
 
   state = {
     modalOpen: this.props.showModalOnStart,
-    step: this.hasVisitedBefore.get() ? DASHBOARD_STEPS.sources : DASHBOARD_STEPS.welcome
+    step: this.hasVisitedBefore.get() ? DASHBOARD_STEPS.commodities : DASHBOARD_STEPS.welcome
   };
 
   componentDidMount() {

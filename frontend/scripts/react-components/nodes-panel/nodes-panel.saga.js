@@ -142,12 +142,12 @@ export function* fetchMissingItems() {
     const tasks = [];
 
     if (selectedContext) {
-      tasks.push(call(getData, 'countries', nodesPanel.countries, true));
       tasks.push(call(getData, 'commodities', nodesPanel.commodities, true));
+      tasks.push(call(getData, 'countries', nodesPanel.countries, true));
     }
 
     const hasMissingData = Object.keys(modules)
-      .filter(name => !['countries', 'commodities'].includes(name))
+      .filter(name => !['commodities', 'countries'].includes(name))
       .some(
         name =>
           nodesPanel[name].selectedNodesIds.length > 0 && nodesPanel.sources.data.byId.length === 0

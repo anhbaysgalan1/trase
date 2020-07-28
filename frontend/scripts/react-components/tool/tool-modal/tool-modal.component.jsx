@@ -21,7 +21,7 @@ export default function ToolModal(props) {
     switch (activeModal) {
       case 'context': {
         const closeModal = () => setActiveModal(null);
-        const showBackButton = step > TOOL_STEPS.sources;
+        const showBackButton = step > TOOL_STEPS.commodities;
         const onContinue = isLastStep => {
           if (isLastStep) {
             finishSelection();

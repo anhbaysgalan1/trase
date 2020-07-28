@@ -269,9 +269,9 @@ export const EXPLORE_STEPS = {
 
 export const DASHBOARD_STEPS = {
   welcome: 0,
-  countries: 1,
-  sources: 1,
-  commodities: 2,
+  commodities: 1,
+  countries: 2,
+  sources: 2,
   destinations: 3,
   exporters: 4,
   importers: 5
@@ -279,9 +279,9 @@ export const DASHBOARD_STEPS = {
 
 export const TOOL_STEPS = {
   welcome: 0,
-  countries: 1,
-  sources: 1,
-  commodities: 2,
+  commodities: 1,
+  countries: 2,
+  sources: 2,
   destinations: 3,
   exporters: 4,
   importers: 5

@@ -60,7 +60,7 @@ class DashboardElement extends React.PureComponent {
 
   renderStep() {
     const { step, setStep, dirtyBlocks } = this.props;
-    const showBackButton = step > DASHBOARD_STEPS.sources;
+    const showBackButton = step > DASHBOARD_STEPS.commodities;
 
     if (step === DASHBOARD_STEPS.welcome && (!dirtyBlocks.countries || !dirtyBlocks.commodities)) {
       return <DashboardWelcome onContinue={() => setStep(step + 1)} />;

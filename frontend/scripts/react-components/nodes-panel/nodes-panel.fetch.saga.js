@@ -63,6 +63,11 @@ export function* getPanelParams(optionsType, options = {}) {
   const currentStep = DASHBOARD_STEPS[optionsType];
   const nodeId = isOverview || initialLoad ? 'selectedNodeId' : 'draftSelectedNodeId';
   const nodesIds = isOverview || initialLoad ? 'selectedNodesIds' : 'draftSelectedNodesIds';
+
+  if (currentStep > DASHBOARD_STEPS.commodities || isOverview) {
+    params.commodities_ids = state.nodesPanel.commodities[nodeId];
+  }
+
   if (currentStep === DASHBOARD_STEPS.sources && optionsType !== 'countries') {
     params.countries_ids = state.nodesPanel.countries[nodeId];
   }
@@ -75,10 +80,6 @@ export function* getPanelParams(optionsType, options = {}) {
     } else {
       params.sources_ids = activeItemParams(panel[nodesIds]);
     }
-  }
-
-  if (currentStep > DASHBOARD_STEPS.commodities || isOverview) {
-    params.commodities_ids = state.nodesPanel.commodities[nodeId];
   }
 
   if (currentStep > DASHBOARD_STEPS.destinations || isOverview) {
@@ -153,6 +154,7 @@ export function* getData(name, reducer, initialLoad) {
 
     const getPreviousStep = initialLoad ? initialPreviousStepSelector : previousStepSelector;
     const previousStep = yield select(getPreviousStep[name]);
+
     yield put(setData(data.data, previousStep, name));
     if (!data.data?.length) {
       yield put(setNoData(!data.data?.length, name));

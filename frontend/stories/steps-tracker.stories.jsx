@@ -20,8 +20,8 @@ storiesOf('StepsTracker', module).addWithJSX('StepsTracker', () => (
       <StepsTracker
         activeStep={store.get('active')}
         steps={[
-          { label: 'source countries' },
           { label: 'countries' },
+          { label: 'source countries' },
           { label: 'commodities' },
           { label: 'companies' }
         ]}

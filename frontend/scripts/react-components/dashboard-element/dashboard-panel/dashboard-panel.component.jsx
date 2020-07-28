@@ -53,10 +53,10 @@ class DashboardPanel extends Component {
   renderPanel() {
     const { step } = this.props;
     switch (step) {
-      case DASHBOARD_STEPS.sources:
-        return <CountrySourcesPanel nodeTypeRenderer={DashboardPanel.sourcesNodeTypeRenderer} />;
       case DASHBOARD_STEPS.commodities:
         return <CommoditiesPanel />;
+      case DASHBOARD_STEPS.sources:
+        return <CountrySourcesPanel nodeTypeRenderer={DashboardPanel.sourcesNodeTypeRenderer} />;
       case DASHBOARD_STEPS.destinations:
         return <DestinationsPanel />;
       case DASHBOARD_STEPS.exporters:
@@ -137,8 +137,8 @@ class DashboardPanel extends Component {
         <div ref={this.containerRef} className="dashboard-panel-content">
           <StepsTracker
             steps={[
-              'Source countries',
               'Commodities',
+              'Source countries',
               'Import countries',
               'Exporters',
               'Importers'
