@@ -19,21 +19,35 @@ function ProfilePanel(props) {
     data,
     loading
   } = props;
-  const singularTypes = {
-    sources: 'Source',
-    traders: 'Trader',
-    destinations: 'Importer country'
+
+  // The heading needs to be extracted as unmounting and replacing the Heading causes a crash because of transifex
+  const renderHeading = () => {
+    const singularTypes = {
+      sources: 'Source',
+      traders: 'Trader',
+      destinations: 'Importer country'
+    };
+    const chooseText = step === PROFILE_STEPS.commodities ? 'Choose the ' : 'Choose one ';
+    const typeText = {
+      [PROFILE_STEPS.type]: 'type of profile',
+      [PROFILE_STEPS.profiles]: `${singularTypes[profileType]} profile`,
+      [PROFILE_STEPS.commodities]: 'commodity'
+    }[step];
+
+    return (
+      <Heading align="center" size="md" weight="light">
+        {chooseText}
+        <Heading as="span" size="md" weight="bold">
+          {typeText}
+        </Heading>
+      </Heading>
+    )
   };
   switch (step) {
     case PROFILE_STEPS.type:
       return (
         <div className="c-profile-panel">
-          <Heading align="center" size="md" weight="light">
-            Choose the{' '}
-            <Heading as="span" size="md" weight="bold">
-              type of profile
-            </Heading>
-          </Heading>
+          {renderHeading()}
           <div className="row profile-panel-content">
             <BlockSwitch
               blocks={blocks}
@@ -46,12 +60,7 @@ function ProfilePanel(props) {
     case PROFILE_STEPS.profiles: {
       return (
         <div className="c-profile-panel">
-          <Heading align="center" size="md" weight="light">
-            Choose the{' '}
-            <Heading as="span" size="md" weight="bold">
-              {singularTypes[profileType]} profile
-            </Heading>
-          </Heading>
+          {renderHeading()}
           <div className="row columns profile-panel-content">
             <ProfileStepPanel panelName={getPanelStepName(step)} />
           </div>
@@ -61,13 +70,7 @@ function ProfilePanel(props) {
     case PROFILE_STEPS.commodities:
       return (
         <div className="c-profile-panel">
-          <Heading align="center" size="md" weight="light">
-            Choose one
-            <Heading as="span" size="md" weight="bold">
-              {' '}
-              commodity
-            </Heading>
-          </Heading>
+          {renderHeading()}
           <div className="row columns profile-panel-content">
             <ProfilesCommoditiesPanel
               page={panels.commodities.page}
